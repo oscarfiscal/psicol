@@ -3,7 +3,7 @@
 namespace Tests\Feature\Http\Controllers;
 
 use Tests\TestCase;
-use App\Models\Buyer;
+use App\Models\User;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -23,11 +23,11 @@ class buyerControllerTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        Buyer::factory()->create();
+        User::factory()->create();
         
         $response=$this->get('/api/compradores');
         $response->assertOk();
-        $buyer=Buyer::all(); 
+        $buyer=User::all(); 
                 $response ->assertJson([
                     'data'=> [
                         [
@@ -59,28 +59,31 @@ class buyerControllerTest extends TestCase
 
         $response = $this->postJson('/api/comprador',[
             'email' => 'oscarf@gmail.com',
-            'password' => '123456', 
-            'password_confirmation' => '123456',
             'name' => 'Oscar',
             'last_name' => 'Fiscal',
             'identification' => '123456789',
-            'phone' => '123456789',        
+            'phone' => '123456789',  
+            'password' => '123456', 
+            'password_confirmation' => '123456',
+               
 
            
         ]); // aqui se crea el comprador
 
-        $this->assertCount(1,Buyer::all()); // aqui se verifica que se haya creado un comprador
+        $this->assertCount(1,User::all()); // aqui se verifica que se haya creado un comprador
 
-        $buyer = Buyer::first(); // aqui se obtiene el comprador
+        $buyer = User::first(); // aqui se obtiene el comprador
 
         // aqui se verifica que los datos del comprador sean los mismos que se enviaron en el request
         $this->assertEquals('oscarf@gmail.com',$buyer->email);
-        $this->assertEquals('123456',$buyer->password);     
-        $this->assertEquals('123456',$buyer->password_confirmation);
         $this->assertEquals('Oscar',$buyer->name);
         $this->assertEquals('Fiscal',$buyer->last_name);
         $this->assertEquals('123456789',$buyer->identification);
         $this->assertEquals('123456789',$buyer->phone);
+        $this->assertEquals('123456',$buyer->password);     
+       
+       
+      
 
         $response->assertStatus(201);
 
@@ -99,14 +102,13 @@ class buyerControllerTest extends TestCase
             ]
         ]); 
        // se verifica que el comprador se haya guardado en la base de datos
-        $this->assertDatabaseHas ('buyers',[
+        $this->assertDatabaseHas ('users',[
             'email' => 'oscarf@gmail.com',
-            'password' => '123456',
-            'password_confirmation' => '123456',
             'name' => 'Oscar',
             'last_name' => 'Fiscal',
             'identification' => '123456789',
             'phone' => '123456789',
+            'password' => '123456',
         ]);
     }
 

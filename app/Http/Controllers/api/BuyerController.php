@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Buyer;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\Buyer as BuyerRequests;
 use App\Http\Resources\Buyer as BuyerResources;
@@ -11,11 +11,11 @@ use App\Http\Resources\BuyerCollection;
 
 class BuyerController extends Controller
 {
-    protected $buyer;
+    protected $user;
 
-    public function __construct (Buyer $buyer)
+    public function __construct (User $user)
     {
-        $this->buyer = $buyer;
+        $this->user = $user;
     }
     /**
      * Display a listing of the resource.
@@ -24,7 +24,7 @@ class BuyerController extends Controller
      */
     public function index()
     {
-        $buyer = Buyer::all();
+        $buyer = User::all();
 
         return new BuyerCollection ($buyer);
     }
@@ -37,7 +37,7 @@ class BuyerController extends Controller
      */
     public function store(BuyerRequests $request)
     {
-        $buyer = $this->buyer->create($request->all());
+        $buyer = $this->user->create($request->all());
 
         return response()->json(new BuyerResources($buyer),201);
     }
@@ -45,10 +45,10 @@ class BuyerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Buyer  $buyer
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(Buyer $buyer)
+    public function show(User $user)
     {
         //
     }
@@ -57,10 +57,10 @@ class BuyerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Buyer  $buyer
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Buyer $buyer)
+    public function update(Request $request, User $user)
     {
         //
     }
@@ -68,10 +68,10 @@ class BuyerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Buyer  $buyer
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Buyer $buyer)
+    public function destroy(User $user)
     {
         //
     }
