@@ -61,7 +61,7 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Event $event)
+    public function update(EventRequests $request, Event $event)
     {
         $event->update($request->all());
         return response()->json(new EventResources($event),200);
