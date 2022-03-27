@@ -37,7 +37,7 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EventRequests $request)
     {
         $event = $this->event->create($request->all());
         return response()->json(new EventResources($event),201);
