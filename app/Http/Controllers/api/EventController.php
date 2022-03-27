@@ -51,7 +51,7 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        
+        return new EventResources($event);
     }
 
     /**
@@ -63,7 +63,8 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $event)
     {
-        //
+        $event->update($request->all());
+        return response()->json(new EventResources($event),200);
     }
 
     /**
@@ -74,6 +75,7 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
-        //
+        $event->delete();
+        return response()->json(['message'=>'deleted successfully!'],204);
     }
 }

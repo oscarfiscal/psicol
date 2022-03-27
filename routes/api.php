@@ -26,3 +26,6 @@ Route::post('/comprador',[App\Http\Controllers\api\BuyerController::class,'store
 //rutas para evento
 Route::get('/eventos', [App\Http\Controllers\api\EventController::class, 'index']);
 Route::post('/evento',[App\Http\Controllers\api\EventController::class,'store']);
+Route::get('/evento/{event}',[App\Http\Controllers\api\EventController::class,'show']);
+Route::put('/evento/{event}',[App\Http\Controllers\api\EventController::class,'update']);
+Route::delete('/evento/{event}',[App\Http\Controllers\api\EventController::class,'destroy']);
