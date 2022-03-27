@@ -17,7 +17,40 @@ class buyerControllerTest extends TestCase
      * @return void
      */
 
-     
+     //test listar compradores
+
+    public function test_list_buyers()
+    {
+        $this->withoutExceptionHandling();
+
+        Buyer::factory()->create();
+        
+        $response=$this->get('/api/compradores');
+        $response->assertOk();
+        $buyer=Buyer::all(); 
+                $response ->assertJson([
+                    'data'=> [
+                        [
+                            'data'=>[
+                                'type'=>'comprador',
+                                'comprador_id'=>$buyer->first()->id,
+                                'attributes'=>[
+                                    'email'=>$buyer->first()->email,
+                                    'name'=>$buyer->first()->name,
+                                    'last_name'=>$buyer->first()->last_name,
+                                    'identification'=>$buyer->first()->identification,
+                                    'phone'=>$buyer->first()->phone,
+                                   
+                                ]
+                            ]
+                                        ]
+                                    ],
+                    
+                ]);
+                  
+        
+       
+    }
      //test  para crear comprador
     public function test_buyer_can_be_created()
 
@@ -58,8 +91,6 @@ class buyerControllerTest extends TestCase
                 'comprador_id'=>$buyer->id,
                 'attributes'=>[
                     'email'=>$buyer->email,
-                    'password'=>$buyer->password,
-                    'password_confirmation'=>$buyer->password_confirmation,
                     'name'=>$buyer->name,
                     'last_name'=>$buyer->last_name,
                     'identification'=>$buyer->identification,

@@ -7,6 +7,7 @@ use App\Models\Buyer;
 use Illuminate\Http\Request;
 use App\Http\Requests\Buyer as BuyerRequests;
 use App\Http\Resources\Buyer as BuyerResources;
+use App\Http\Resources\BuyerCollection;
 
 class BuyerController extends Controller
 {
@@ -23,7 +24,7 @@ class BuyerController extends Controller
      */
     public function index()
     {
-        //
+       
     }
 
     /**

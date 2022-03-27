@@ -21,8 +21,6 @@ class Buyer extends JsonResource
            'comprador_id'=>$this->id,
            'attributes'=>[
                 'email'=>$this->email,
-                'password'=>$this->password,
-                'password_confirmation'=>$this->password_confirmation,
                 'name'=>$this->name,
                 'last_name'=>$this->last_name,
                 'identification'=>$this->identification,

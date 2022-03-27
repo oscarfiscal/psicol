@@ -19,4 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //rutas para el controlador de comprador
+Route::get('/compradores', [App\Http\Controllers\api\BuyerController::class, 'index']);
 Route::post('/comprador',[App\Http\Controllers\api\BuyerController::class,'store']);
