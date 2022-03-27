@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\controllers\BuyerController;
 use App\Http\controllers\EventController;
+use App\Http\controllers\TicketController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -29,3 +30,7 @@ Route::post('/evento',[App\Http\Controllers\api\EventController::class,'store'])
 Route::get('/evento/{event}',[App\Http\Controllers\api\EventController::class,'show']);
 Route::put('/evento/{event}',[App\Http\Controllers\api\EventController::class,'update']);
 Route::delete('/evento/{event}',[App\Http\Controllers\api\EventController::class,'destroy']);
+
+//ruta para boletos
+Route::post('/boleto',[App\Http\Controllers\api\TicketController::class,'store']);
+
