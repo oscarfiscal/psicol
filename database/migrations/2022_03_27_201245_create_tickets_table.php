@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('code');
             $table->string('location');
             $table->decimal('price', 8, 2);
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('event_id')->constrained();
             $table->timestamps();
         });
     }

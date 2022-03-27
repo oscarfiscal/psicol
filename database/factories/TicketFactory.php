@@ -17,7 +17,11 @@ class TicketFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'code' => $this->faker->uuid,
+            'location' => $this->faker->name,
+            'price' => $this->faker->randomFloat(2, 0, 100),
+            'user_id' =>  User::factory()->create(),
+            'event_id' =>  Event::factory()->create(),
         ];
     }
 }
