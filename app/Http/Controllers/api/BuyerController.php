@@ -24,7 +24,9 @@ class BuyerController extends Controller
      */
     public function index()
     {
-       
+        $buyer = Buyer::all();
+
+        return new BuyerCollection ($buyer);
     }
 
     /**
